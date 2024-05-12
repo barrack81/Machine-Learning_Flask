@@ -9,7 +9,7 @@ app = Flask(__name__)
 def predict(values, model_path):
     model = load_model(model_path)
     values = np.asarray(values)
-    return model.predict(values.reshape(1, -1))[0]
+    return model.predict(values.reshape(-1, 1))[0]
 
 @app.route("/")
 def home():
