@@ -67,13 +67,14 @@ def malariaPage():
             file = request.files.get('image')  # Retrieve the uploaded file
             if file is not None:
                 img = Image.open(file)
-                img = img.resize((36, 36))
+                img = img.resize((128, 128))
                 img = np.asarray(img)
-                img = img.reshape((1, 36, 36, 3))
-                img = img.astype(np.float64)
-                model = load_model("models/malaria.h5")
-                pred = np.argmax(model.predict(img)[0])
-                return render_template('malaria_predict.html', pred=pred)
+                img = img.reshape((1, 128, 128, 3))
+                img = img.astype(np.float64) / 255.0
+                model = load_model("models/malaria_model.h5") #loading the model
+                pred = model.predict(img)
+                pred_class = 'Uninfected' if pred[0] > 0.5 else 'Parasitized'
+                return render_template('malaria_predict.html', pred=pred_class)
             else:
                 message = "Please upload an Image"
                 return render_template('malaria.html', message=message)
@@ -89,16 +90,17 @@ def pneumoniaPage():
             file = request.files.get('image')  # Retrieve the uploaded file
             if file is not None:
                 img = Image.open(file)
-                img = img.resize((36, 36))  # Resize the image to the desired dimensions
+                img = img.resize((128, 128))  # Resize the image to the desired dimensions
                 img = img.convert('RGB')  # Ensure the image is in RGB mode
                 img = np.asarray(img)
-                if img.shape != (36, 36, 3):
+                if img.shape != (128, 128, 3):
                     raise ValueError("Image has incorrect shape after resizing")
-                img = img.reshape((1, 36, 36, 3))
-                img = img.astype(np.float64)
-                model = load_model("models/pneumonia.h5")
-                pred = np.argmax(model.predict(img)[0])
-                return render_template('malaria_predict.html', pred=pred)
+                img = img.reshape((1, 128, 128, 3))
+                img = img.astype(np.float32) /255.0
+                model = load_model("models/pneumonia_model.h5")
+                pred = model.predict(img)
+                pred_class = 'pneumonia' if pred[0] > 0.5 else 'Normal'
+                return render_template('pneumonia_predict.html', pred=pred_class)
             else:
                 message = "Please upload an Image"
                 return render_template('pneumonia.html', message=message)

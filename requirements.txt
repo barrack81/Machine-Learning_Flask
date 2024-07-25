@@ -1,3 +1,4 @@
+# kindly make sure you have al the packages andlibraries intalled to the latest pip version and have the latest python version
 absl-py==0.13.0
 astor==0.8.1
 cached-property==1.5.2
@@ -7,7 +8,7 @@ chardet==4.0.0
 click==8.0.1
 colorama==0.4.4
 dataclasses==0.8
-Flask==1.1.1
+Flask==3.0.0
 gast==0.2.2
 google-auth==1.31.0
 google-auth-oauthlib==0.4.4
@@ -37,12 +38,12 @@ rsa==4.7.2
 scikit-learn==0.21.3
 scipy==1.5.4
 six==1.16.0
-tensorboard==2.1.1
-tensorflow==2.1.0
-tensorflow-estimator==2.1.0
+tensorboard==2.15.1
+tensorflow==2.15.0
+tensorflow-estimator==2.15.0
 termcolor==1.1.0
 typing-extensions==3.10.0.0
 urllib3==1.26.5
 Werkzeug==2.0.1
 wrapt==1.12.1
-zipp==3.4.1
+zipp==3.17.0
