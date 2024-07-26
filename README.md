@@ -39,13 +39,7 @@ This webapp was developed using Flask Web Framework. The models used to predict 
 mkvirtualenv environment_name
 ```
 
-4. Install all the dependencies:
-
-```
-pip install -r requirements.txt
-```
-
-5. Run the application
+4. Run the application
 
 ```
 python app.py
